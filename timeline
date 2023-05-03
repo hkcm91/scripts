@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1f1b24;
+      color: #f0f0f0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-left: 50%;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      width: 2px;
+      background-color: #00f6ff;
+    }
+
+    .timeline-event {
+      padding: 10px 40px;
+      width: 300px;
+      background-color: #1f1b24;
+      border: 2px solid #00f6ff;
+      border-radius: 6px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .timeline-event:nth-child(odd) {
+      margin-left: -440px;
+    }
+
+    .timeline-event:nth-child(even) {
+      margin-left: 0px;
+    }
+
+    .timeline-event h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #00f6ff;
+    }
+
+    .timeline-event p {
+      font-size: 16px;
+    }
+
+    .timeline-event::before {
+      content: '';
+      position: absolute;
+      border-width: 10px;
+      border-style: solid;
+      top: 50%;
+      right: -30px;
+      transform: translateY(-50%);
+      border-color: transparent #00f6ff transparent transparent;
+      z-index: 1;
+    }
+
+    .timeline-event:nth-child(even)::before {
+      left: -30px;
+      border-color: transparent transparent transparent #00f6ff;
+    }
+
+    .timeline-content {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      padding: 10px;
+      background-color: #1f1b24;
+      border: 2px solid #00f6ff;
+      border-radius: 6px;
+      width: 200px;
+      color: #f0f0f0;
+      transform: translateX(-50%);
+    }
+
+    .timeline-event:nth-child(odd) .timeline-content {
+      left: 50%;
+    }
+  </style>
+  <title>Wikileaks Timeline</title>
+</head>
+<body>
+  <div class="timeline">
+    <div class="timeline-line"></div>
+    <div class="timeline-event" id="event-1">
+      <h2>2006 - WikiLeaks Founded</h2>
+      <p>WikiLeaks is founded by Julian Assange, an Australian internet activist.</p>
+      <div class="timeline-content">Additional info...</div>
+    </div>
+    <div class="timeline-event right" id="event-2">
+      <h2>2010 - Collateral Murder Video</h2>
+      <p>WikiLeaks publishes a classified video of a US helicopter attack in Baghdad that killed several civilians, including two Reuters journalists.</p>
+      <div class="timeline-content">Additional info...</div>
+    </div>
+    <!-- Add more events here -->
+  </div>
+ 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const timelineEvents = document.querySelectorAll('.timeline-event');
+
+      timelineEvents.forEach(event => {
+        event.addEventListener('click', function () {
+          const content = this.querySelector('.timeline-content');
+          
+          if (content.style.display === 'block') {
+            content.style.display = 'none';
+          } else {
+            content.style.display = 'block';
+            
+            // Add any additional information, photos, or videos related to the event here
+            // Example: content.innerHTML += '<img src="path/to/image.jpg" alt="Image description">';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
